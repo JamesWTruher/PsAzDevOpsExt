@@ -486,7 +486,7 @@ function Initialize-PSPackageProject {
     $moduleSourceBase = [System.IO.Path]::Join($ModuleRoot, "src")
     $null = New-Item -ItemType Directory -Path $moduleSourceBase
     $moduleFileWithoutExtension = [system.io.path]::join($moduleSourceBase, ${ModuleName})
-    New-ModuleManifest -Path "${moduleFileWithoutExtension}.psd1"
+    New-ModuleManifest -Path "${moduleFileWithoutExtension}.psd1" -CmdletsToExport 'verb-noun' -RootModule "./mymod.dll"
     $null = New-Item -Type File "${moduleFileWithoutExtension}.psm1"
 
     # Create a directory for cs sources and create a classlib csproj file with
