@@ -794,11 +794,12 @@ function Initialize-PSPackageProject {
         $output = dotnet new classlib -f netstandard2.0 --no-restore --force
         $output += dotnet add package PowerShellStandard.Library --no-restore
         Move-Item code.csproj "${ModuleName}.csproj"
+        $ModuleNamespace = $ModuleName -replace "[^A-Za-z0-9_]",""
         $str = @"
 using System;
 using System.Management.Automation;
 
-namespace ${ModuleName}
+namespace ${ModuleNamespace}
 {
     [Cmdlet("verb","noun")]
     public class Cmdlet1 : PSCmdlet
